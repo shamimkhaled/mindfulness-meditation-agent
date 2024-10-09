@@ -1,0 +1,5 @@
+openai==0.28
+pydantic
+pytest
+streamlit
+python-dotenv
