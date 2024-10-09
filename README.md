@@ -149,6 +149,26 @@ To run unit tests, use the following command:
 python -m unittest discover tests 
 
 ```
+## Repository Structure
+
+```
+mindfulness-meditation-agent/
+│
+├── README.md                      # Project documentation
+├── app.py                         # Streamlit app
+├── .gitignore                     # Files and directories to ignore in version control
+├── .env.example                   # Example environment variables
+├── requirements.txt               # Python dependencies
+├── src/                           # Source code for the agent
+│   ├── __init__.py                # Init file for the src module
+|   ├── convert_to_milliseconds.py # Convert seconds to milliseconds
+│   ├── meditation_agent.py        # Main code for generating meditation scripts
+│   ├── models.py                  # Pydantic models for structured validation
+├── tests/                         # Unit tests for the project
+│   ├── __init__.py                # Init file for the tests module
+│   ├── test_meditation_agent.py # Unit tests for meditation_agent.py
+
+```
 ## Contributing
 
 Contributions are welcome! If you find a bug or have a feature request, please open an issue or submit a pull request.
