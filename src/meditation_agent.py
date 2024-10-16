@@ -32,34 +32,37 @@ def generate_meditation_script(prompt: str) -> MeditationScript:
 
      # Define the schema for the structured output
     response_format = {
-            "type": "json_schema",
-            "json_schema": {
-                "name": "meditation_response",
-                "schema": {
-                    "type": "object",
-                    "properties": {
-                        "duration": {"type": "integer"},
-                        "focus_area": {"type": "string"},
-                        "phrases": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "text": {"type": "string"},
-                                    "pause": {"type": "integer"}
-                                },
-                                "required": ["text", "pause"],
-                                "additionalProperties": False
-                            }
+        "type": "json_schema",
+        "json_schema": {
+            "name": "meditation_response",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "title": {"type": "string"},
+                    "duration": {"type": "integer"},  # Duration in milliseconds
+                    "focus_area": {"type": "string"},
+                    "phrases": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "text": {"type": "string"},
+                                "pause": {"type": "integer"},  # Pause in milliseconds
+                                "tts_duration": {"type": "integer"}  # Duration for TTS in milliseconds
+                            },
+                            "required": ["text", "pause", "tts_duration"],
+                            "additionalProperties": False
                         }
                     },
-                    "required": ["duration", "focus_area", "phrases"],
-                    "additionalProperties": False
+                    "interval": {"type": "integer"},  # Default interval between phrases
+                    "engagement": {"type": "integer"}  # Engagement level, 0-100
                 },
-                "strict": True
-            }
+                "required": ["title", "duration", "focus_area", "phrases", "interval", "engagement"],
+                "additionalProperties": False
+            },
+            "strict": True
         }
-
+    }
 
     try:
         # Call OpenAI API to generate a response based on the prompt
